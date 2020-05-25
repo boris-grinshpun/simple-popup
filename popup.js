@@ -28,22 +28,26 @@ let SimplePopup = (function () {
       popupContent.style.display = popupState ? 'block' : 'none';
       popupOverlay.style.display = popupState ? 'block' : 'none';
       if (popupState) {
-        loadData()
+        loadData();
       }
     }
 
     async function loadData() {
-      let response = await fetch(url, {
-        method: "get",
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest'
-        }
-      });
-      let data = await response.json()
-      popupContent.innerHTML = data.response;
+      try {
+        let response = await fetch(url, {
+          method: "get",
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
+        let data = await response.json();
+        popupContent.innerHTML = data.response;
+      } catch (error) {
+        console.log(error);
+      }
     }
 
-    return new Object("Simple Popup")
+    return new Object("Simple Popup");
 
   }
 
