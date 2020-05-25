@@ -61,4 +61,4 @@ let SimplePopup = (function () {
 
 })();
 
-SimplePopup.create('toggle-popup-button', 'popup-content');
+SimplePopup.create();
