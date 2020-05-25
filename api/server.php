@@ -12,6 +12,8 @@ abstract class Server {
       && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){
         
         $this->requestMethod = strtolower($_SERVER['REQUEST_METHOD']);  
+        
+        //post payload
         if ($this->requestMethod == 'post') {
           $this->body = $_POST;
         }
