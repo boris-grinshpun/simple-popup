@@ -14,7 +14,7 @@ let SimplePopup = (function () {
 
     let url = '/api/data';
 
-    window.addEventListener('DOMContentLoaded', (event) => {
+    window.addEventListener('DOMContentLoaded', () => {
       toggleButton = document.getElementById('toggle-popup-button');
       popupContent = document.getElementById('popup-content');
       popupOverlay = document.getElementById('popup-overlay');
