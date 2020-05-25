@@ -4,7 +4,7 @@
 let SimplePopup = (function () {
   let simplePopupInstance;
 
-  function initPopup(butonId, contentId) {
+  function initPopup() {
     let popupState = false;
 
     //DOM Elements
@@ -61,4 +61,4 @@ let SimplePopup = (function () {
 
 })();
 
-SimplePopup.create();
+SimplePopup.create('toggle-popup-button', 'popup-content');
