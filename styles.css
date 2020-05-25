@@ -44,7 +44,7 @@ body {
 }
 
 button {
-  background-color: #555555; /* Green */
+  background-color: #4e2da9;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -52,4 +52,7 @@ button {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+button:hover {
+  background-color: #c33263;
 }
