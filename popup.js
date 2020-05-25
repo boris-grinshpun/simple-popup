@@ -1,64 +1,56 @@
 
-// Singelton instance of Simple Popup
+class SimplePopup {
 
-let SimplePopup = (function () {
-  let simplePopupInstance;
+  toggleButton = null;
+  popupContent = null;
+  popupOverlay = null;
+  url = '/api/data.php';
 
-  function initPopup() {
-    let popupState = false;
-
-    //DOM Elements
-    let toggleButton;
-    let popupContent;
-    let popupOverlay;
-
-    let url = '/api/data';
+  constructor() {
 
     window.addEventListener('DOMContentLoaded', () => {
-      toggleButton = document.getElementById('toggle-popup-button');
-      popupContent = document.getElementById('popup-content');
-      popupOverlay = document.getElementById('popup-overlay');
+      this.toggleButton = document.getElementById('toggle-popup-button');
+      this.popupContent = document.getElementById('popup-content');
+      this.popupOverlay = document.getElementById('popup-overlay');
 
-      toggleButton.addEventListener('click', togglePopup, false);
-      popupOverlay.addEventListener('click', togglePopup, false);
+      this.bindEvents();
+
     });
+  }
 
-    function togglePopup() {
-      popupState = !popupState;
-      popupContent.style.display = popupState ? 'block' : 'none';
-      popupOverlay.style.display = popupState ? 'block' : 'none';
-      if (popupState) {
-        loadData();
-      }
-    }
+  bindEvents() {
 
-    async function loadData() {
-      try {
-        let response = await fetch(url, {
-          method: "get",
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-          }
-        });
-        let data = await response.json();
-        popupContent.innerHTML = data.response;
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    return new Object("Simple Popup");
+    this.toggleButton.addEventListener('click', this.togglePopup.bind(this), false);
+    this.popupOverlay.addEventListener('click', this.togglePopup.bind(this), false);
 
   }
 
-  function create() {
-    if (!simplePopupInstance) {
-      simplePopupInstance = initPopup();
+  togglePopup() {
+
+    this.popupState = !this.popupState;
+    this.popupContent.style.display = this.popupState ? 'block' : 'none';
+    this.popupOverlay.style.display = this.popupState ? 'block' : 'none';
+
+    if (this.popupState) {
+      this.loadData();
     }
   }
 
-  return { create }
+  async loadData() {
 
-})();
+    try {
+      let response = await fetch(this.url, {
+        method: "GET",
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        }
+      });
+      let data = await response.json();
+      this.popupContent.innerHTML = data.response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
 
-SimplePopup.create();
+let popup = new SimplePopup();
