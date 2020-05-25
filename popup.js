@@ -24,7 +24,7 @@ let SimplePopup = (function () {
     });
 
     function togglePopup() {
-      popupState = !popupState
+      popupState = !popupState;
       popupContent.style.display = popupState ? 'block' : 'none';
       popupOverlay.style.display = popupState ? 'block' : 'none';
       if (popupState) {
