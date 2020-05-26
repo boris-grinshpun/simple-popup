@@ -31,7 +31,6 @@ class SimplePopup {
     let element = document.createElement("div");
     element.id = id;
     document.body.appendChild(element);
-    return element;
 
   }
 
