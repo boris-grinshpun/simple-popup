@@ -1,21 +1,46 @@
 
 class SimplePopup {
 
+  popupContent = 'popup-content';
+  popupOverlay = 'popup-overlay';
   toggleButton = null;
-  popupContent = null;
-  popupOverlay = null;
-  url = '/api/data.php';
+  url = null;
 
-  constructor() {
+  constructor({ buttonId, dataUrl }) {
+    this.toggleButton = buttonId;
+    this.url = dataUrl
 
     window.addEventListener('DOMContentLoaded', () => {
-      this.toggleButton = document.getElementById('toggle-popup-button');
-      this.popupContent = document.getElementById('popup-content');
-      this.popupOverlay = document.getElementById('popup-overlay');
 
+      this.createElements()
+      this.getDomReferences()
       this.bindEvents();
 
     });
+  }
+
+  createElements() {
+
+    this.createElement(this.popupContent);
+    this.createElement(this.popupOverlay);
+
+  }
+
+  createElement(id) {
+
+    let element = document.createElement("div");
+    element.id = id;
+    document.body.appendChild(element);
+    return element;
+
+  }
+
+  getDomReferences() {
+
+    this.toggleButton = document.getElementById(this.toggleButton);
+    this.popupOverlay = document.getElementById(this.popupOverlay);
+    this.popupContent = document.getElementById(this.popupContent);
+
   }
 
   bindEvents() {
@@ -53,4 +78,7 @@ class SimplePopup {
   }
 }
 
-let popup = new SimplePopup();
+let popup = new SimplePopup({
+  buttonId: "toggle-popup-button",
+  dataUrl: "api/data.php"
+});
