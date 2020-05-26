@@ -7,8 +7,9 @@ class SimplePopup {
   url = null;
 
   constructor({ buttonId, dataUrl }) {
+
     this.toggleButton = buttonId;
-    this.url = dataUrl
+    this.url = dataUrl;
 
     window.addEventListener('DOMContentLoaded', () => {
 
